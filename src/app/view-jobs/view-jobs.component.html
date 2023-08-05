@@ -1,0 +1,89 @@
+<h1 class="text-center">View Jobs</h1>
+<hr>
+<br>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Description</th>
+        <th>Requirements</th>
+        <th>Hourly Wage</th>
+        <th>State</th>
+        <th>Contact Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs">
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.title }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.title" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.company }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.company" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.description }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.description" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.requirements }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.requirements" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.wage }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.wage" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.state }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.state" />
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="!job.editMode; else editModeTemplate">
+            {{ job.contactEmail }}
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <input type="text" [(ngModel)]="job.contactEmail" />
+          </ng-template>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="toggleEditMode(job)">
+            {{ job.editMode ? 'Save' : 'Edit' }}
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteJob(jobs.indexOf(job))">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

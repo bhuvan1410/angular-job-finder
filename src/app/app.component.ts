@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'job-finder';
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  isFullScreen(): boolean {
+    return this.activatedRoute.firstChild?.snapshot.data['fullScreen'] === true;
+  }
+  
 }

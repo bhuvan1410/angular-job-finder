@@ -1,0 +1,28 @@
+<h1 class="text-center">View Articles</h1>
+<hr>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col" *ngFor="let article of articles">
+      <div class="card">
+        <div class="card-header">
+          Author: {{ article.author }}
+          <button class="btn btn-sm btn-primary float-end mx-1" (click)="toggleEditMode(article)">
+            {{ article.editMode ? 'Save' : 'Edit' }}
+          </button>
+          <button class="btn btn-sm btn-danger float-end mx-1" (click)="deleteArticle(articles.indexOf(article))">Delete</button>
+        </div>
+        <div class="card-body">
+          <ng-container *ngIf="!article.editMode; else editModeTemplate">
+            <p class="card-text">{{ article.article }}</p>
+          </ng-container>
+          <ng-template #editModeTemplate>
+            <textarea class="form-control" rows="3" [(ngModel)]="article.article"></textarea>
+          </ng-template>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
